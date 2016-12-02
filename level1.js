@@ -11,13 +11,20 @@ function level1(str) {
     array.forEach(param=>{
         let d = param.slice(0, 1);
         let value = Number(param.slice(1));
-        // console.log(d);
-        // console.log(value);
         if (d === 'L') {
             facing = facing - 1;
         } else {
             facing = facing + 1;
         }
+
+        // MARK: used to use %4 and did not work
+        if (facing === -1) {
+            facing += 4;
+        }
+        if (facing === 4) {
+            facing -= 4;
+        }
+
         facing = facing % 4;
         switch (facing) {
             case 0:
@@ -37,9 +44,21 @@ function level1(str) {
         }
     });
 
-    console.log("aLeft: " + aLeft + ", aUp: " + aUp);
+    let distance = Math.abs(aLeft) + Math.abs(aUp);
+    // console.log("aLeft: " + aLeft + ", aUp: " + aUp);
+    // console.log("Distance: " + distance);
+    return distance;
 }
 
-// level1(question);
-// level1("R2, R2, R2");
-level1("R10");
+const assert = require('assert');
+
+describe('level1', ()=>{
+    it('should return 2 when input is \'R2, R2, R2\'', ()=>{
+        assert.equal(level1('R2, R2, R2'), 2);
+    });
+    it('should return 12 when input is \'R5, L5, R5, R3\'', ()=>{
+        assert.equal(level1('R5, L5, R5, R3'), 12);
+    });
+})
+
+console.log("The result is: " + level1(question));

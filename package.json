@@ -1,0 +1,22 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Just a record of advent-of-code",
+  "main": "level1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xhan91/advent-of-code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xhan91/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/xhan91/advent-of-code#readme",
+  "dependencies": {
+    "mocha": "^3.2.0"
+  }
+}
