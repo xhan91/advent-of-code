@@ -1,6 +1,6 @@
 var question = "L5, R1, R4, L5, L4, R3, R1, L1, R4, R5, L1, L3, R4, L2, L4, R2, L4, L1, R3, R1, R1, L1, R1, L5, R5, R2, L5, R2, R1, L2, L4, L4, R191, R2, R5, R1, L1, L2, R5, L2, L3, R4, L1, L1, R1, R50, L1, R1, R76, R5, R4, R2, L5, L3, L5, R2, R1, L1, R2, L3, R4, R2, L1, L1, R4, L1, L1, R185, R1, L5, L4, L5, L3, R2, R3, R1, L5, R1, L3, L2, L2, R5, L1, L1, L3, R1, R4, L2, L1, L1, L3, L4, R5, L2, R3, R5, R1, L4, R5, L3, R3, R3, R1, R1, R5, R2, L2, R5, L5, L4, R4, R3, R5, R1, L3, R1, L2, L2, R3, R4, L1, R4, L1, R4, R3, L1, L4, L1, L5, L2, R2, L1, R1, L5, L3, R4, L1, R5, L5, L5, L1, L3, R1, R5, L2, L4, L5, L1, L1, L2, R5, R5, L4, R3, L2, L1, L3, L4, L5, L5, L2, R4, R3, L5, R4, R2, R1, L5";
 
-function day1(str) {
+function part1(str) {
 
     let aLeft = 0;
     let aUp = 0;
@@ -50,15 +50,76 @@ function day1(str) {
     return distance;
 }
 
+function part2(str) {
+    let aLeft = 0;
+    let aUp = 0;
+    let facing = 0;
+    // u r d l // R +1; L -1
+    const points = [];
+    let result = '';
+
+    let array = str.split(', ');
+    array.forEach(param=>{
+        let d = param.slice(0, 1);
+        let value = Number(param.slice(1));
+        if (d === 'L') {
+            facing = facing - 1;
+        } else {
+            facing = facing + 1;
+        }
+
+        // MARK: used to use %4 and did not work
+        if (facing === -1) {
+            facing += 4;
+        }
+        if (facing === 4) {
+            facing -= 4;
+        }
+
+        // facing = facing % 4;
+        for (let i = 1; i < value + 1; i++) {
+            switch (facing) {
+                case 0:
+                    aUp += 1;
+                    break;
+                case 1:
+                    aLeft -= 1;
+                    break;
+                case 2:
+                    aUp -= 1;
+                    break;
+                case 3:
+                    aLeft += 1;
+                    break;
+                default:
+                    break;
+            }
+            let newPoint = [aLeft, aUp];
+            if (points.find(point=> point[0] == newPoint[0] && point[1] == newPoint[1]) && !result) {
+                result = newPoint;
+            } else {
+                points.push(newPoint);
+            }
+        }
+    });
+
+    const [x, y] = result;
+    let distance = Math.abs(x) + Math.abs(y);
+    // console.log("aLeft: " + aLeft + ", aUp: " + aUp);
+    // console.log("Distance: " + distance);
+    return distance;
+}
+
 const assert = require('assert');
 
-describe('day1', ()=>{
+describe('part1', ()=>{
     it('should return 2 when input is \'R2, R2, R2\'', ()=>{
-        assert.equal(day1('R2, R2, R2'), 2);
+        assert.equal(part1('R2, R2, R2'), 2);
     });
     it('should return 12 when input is \'R5, L5, R5, R3\'', ()=>{
-        assert.equal(day1('R5, L5, R5, R3'), 12);
+        assert.equal(part1('R5, L5, R5, R3'), 12);
     });
 })
 
-console.log("The result is: " + day1(question));
+console.log("The result is: " + part1(question));
+console.log("The result is: " + part2(question));
