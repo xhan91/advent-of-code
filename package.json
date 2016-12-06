@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/xhan91/advent-of-code#readme",
   "dependencies": {
+    "md5": "^2.2.1",
     "mocha": "^3.2.0"
   }
 }
