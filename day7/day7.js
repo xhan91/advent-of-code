@@ -3,10 +3,8 @@ const inputs = fs.readFileSync('data', 'utf8');
 
 function part1() {
     let count = 0;
-    let _inputs = inputs.split('\n');
-    // _inputs.pop();
-    console.log(_inputs);
-    _inputs.forEach(input=>{
+    console.log(inputs);
+    inputs.split('\n').forEach(input=>{
         if (isIp(input)) {
             count += 1;
         }
@@ -15,14 +13,16 @@ function part1() {
 }
 
 function isIp(string) {
-    const a1 = string.split('[');
-    const a2 = a1[1].split(']');
-    const s1 = a1[0];
-    const [s2, s3] = a2;
-    // console.log(s1);
-    // console.log(s2);
-    // console.log(s3);
-    return (hasABBA(s1) || hasABBA(s3)) && !hasABBA(s2);
+    let insides = string.match(/\[\w+\]/g);
+    console.log(insides);
+    for (i in insides) {
+        console.log(i);
+        console.log(hasABBA(insides[i]));
+        if (hasABBA(insides[i])) {
+            return false;
+        }
+    }
+    return hasABBA(string);
 }
 
 function hasABBA(string) {
@@ -35,4 +35,5 @@ function hasABBA(string) {
 // console.log(isIp("abcd[bddb]xyyx"));
 // console.log(isIp("aaaa[qwer]tyui"));
 // console.log(isIp("ioxxoj[asdfgh]zxcvbn"));
-console.log(part1());
+// console.log(part1());
+console.log(isIp("pncauthrouncvjkrik[cyiovjnoesdgpeyjpvd]ajhonypsbifeghxi[wmudcxwbewumjbegnh]qetzbstgmzfruzxqln"));
