@@ -3,9 +3,10 @@ const inputs = fs.readFileSync('data', 'utf8');
 
 function part1() {
     let count = 0;
-    console.log(inputs);
+    console.log(inputs.split('\n').length);
     inputs.split('\n').forEach(input=>{
         if (isIp(input)) {
+            // console.log(input);
             count += 1;
         }
     })
@@ -14,10 +15,8 @@ function part1() {
 
 function isIp(string) {
     let insides = string.match(/\[\w+\]/g);
-    console.log(insides);
+    // console.log(insides);
     for (i in insides) {
-        console.log(i);
-        console.log(hasABBA(insides[i]));
         if (hasABBA(insides[i])) {
             return false;
         }
@@ -31,9 +30,5 @@ function hasABBA(string) {
     return abba.test(string) && !aaaa.test(string);
 }
 
-// console.log(isIp("abba[mnop]qrst"));
-// console.log(isIp("abcd[bddb]xyyx"));
-// console.log(isIp("aaaa[qwer]tyui"));
-// console.log(isIp("ioxxoj[asdfgh]zxcvbn"));
-// console.log(part1());
-console.log(isIp("pncauthrouncvjkrik[cyiovjnoesdgpeyjpvd]ajhonypsbifeghxi[wmudcxwbewumjbegnh]qetzbstgmzfruzxqln"));
+console.log(part1());
+// got 117 and the answer is 118, why
