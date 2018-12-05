@@ -55,3 +55,26 @@ for k,v in guard_time.items():
     the_guard = k
 
 print(the_guard)
+
+for d in date_guard.keys():
+  if date_guard[d] == '3571':
+    print(d, date_guard[d], ''.join(date_timetable[d]))
+
+all_timetable = [0] * 60
+for date, guard in date_guard.items():
+  if guard == the_guard:
+    timetable = date_timetable[date]
+    for i in range(60):
+      if timetable[i] == '#':
+        all_timetable[i] += 1
+
+tmp = list(map(str, all_timetable))
+print(''.join(tmp))
+
+max_minute = max(all_timetable)
+for i in range(60):
+  if all_timetable[i] == max_minute:
+    the_minute = i
+    break
+
+print(int(the_guard) * the_minute)
