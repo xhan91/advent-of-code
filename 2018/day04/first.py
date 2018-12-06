@@ -39,9 +39,6 @@ for timetable in date_timetable.values():
       status = '#'
     timetable[i] = status
 
-# for d in date_guard.keys():
-#   print(d, date_guard[d], ''.join(date_timetable[d]))
-
 for date, timetable in date_timetable.items():
   guard = date_guard[date]
   if guard not in guard_time.keys():
@@ -63,15 +60,15 @@ for date, guard in date_guard.items():
       if timetable[i] == '#':
         all_timetable[i] += 1
 
-tmp = list(map(lambda x: '0' + x if len(x) == 1 else x, map(str, range(60))))
-print(' ' * 16 + ''.join(map(lambda x: x[0], tmp)))
-print(' ' * 16 + ''.join(map(lambda x: x[1], tmp)))
-for d in date_guard.keys():
-  if date_guard[d] == '2287':
-    print(d, date_guard[d], ''.join(date_timetable[d]))
-tmp = list(map(lambda x: '0' + x if len(x) == 1 else x, map(str, all_timetable)))
-print(' ' * 16 + ''.join(map(lambda x: x[0], tmp)))
-print(' ' * 16 + ''.join(map(lambda x: x[1], tmp)))
+# tmp = list(map(lambda x: '0' + x if len(x) == 1 else x, map(str, range(60))))
+# print(' ' * 16 + ''.join(map(lambda x: x[0], tmp)))
+# print(' ' * 16 + ''.join(map(lambda x: x[1], tmp)))
+# for d in date_guard.keys():
+#   if date_guard[d] == '2287':
+#     print(d, date_guard[d], ''.join(date_timetable[d]))
+# tmp = list(map(lambda x: '0' + x if len(x) == 1 else x, map(str, all_timetable)))
+# print(' ' * 16 + ''.join(map(lambda x: x[0], tmp)))
+# print(' ' * 16 + ''.join(map(lambda x: x[1], tmp)))
 
 max_minute = max(all_timetable)
 for i in range(60):
